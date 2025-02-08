@@ -15,13 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView balanceTextView;
     private EditText[] horseBetEditTexts;
     private CheckBox[] horseCheckBoxes;
     private SeekBar[] horseSeekBars;
     private Button startButton, resetButton;
-    private int balance = 1000; // Số dư ban đầu
+    private int balance = 1000;
     private Random random = new Random();
     private Handler handler = new Handler();
 
@@ -30,12 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Ánh xạ các view
         balanceTextView = findViewById(R.id.balanceTextView);
         startButton = findViewById(R.id.startButton);
         resetButton = findViewById(R.id.resetButton);
 
-        // Khởi tạo mảng cho các con ngựa
         horseBetEditTexts = new EditText[]{
                 findViewById(R.id.horse1BetEditText),
                 findViewById(R.id.horse2BetEditText),
@@ -60,24 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.horse5SeekBar)
         };
 
-        // Cập nhật số dư ban đầu
         updateBalance();
 
-        // Xử lý sự kiện khi nhấn nút Bắt đầu
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startRace();
-            }
-        });
-
-        // Xử lý sự kiện khi nhấn nút Reset
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetRace();
-            }
-        });
+        startButton.setOnClickListener(v -> startRace());
+        resetButton.setOnClickListener(v -> resetRace());
     }
 
     private void updateBalance() {
@@ -85,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startRace() {
-        // Kiểm tra xem người dùng đã chọn ngựa và nhập tiền cược hợp lệ chưa
         boolean validBet = false;
         int totalBet = 0;
 
@@ -113,21 +95,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Trừ số tiền cược khỏi số dư
         balance -= totalBet;
         updateBalance();
 
-        // Bắt đầu cuộc đua
         for (SeekBar seekBar : horseSeekBars) {
             seekBar.setProgress(0);
         }
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                moveSeekBars();
-            }
-        }, 1000);
+        handler.postDelayed(this::moveSeekBars, 1000);
     }
 
     private void moveSeekBars() {
@@ -151,20 +126,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkRaceResult() {
-        // Kiểm tra kết quả cuộc đua và cập nhật số dư
+        int winningHorse = -1;
+
         for (int i = 0; i < horseSeekBars.length; i++) {
-            if (horseSeekBars[i].getProgress() >= 100 && horseCheckBoxes[i].isChecked()) {
-                String betText = horseBetEditTexts[i].getText().toString();
-                int betAmount = Integer.parseInt(betText);
-                balance += betAmount * 2; // Giả sử tỷ lệ thắng là 2:1
-                updateBalance();
-                Toast.makeText(this, "Ngựa " + (i + 1) + " thắng! Bạn nhận được " + (betAmount * 2) + " VND", Toast.LENGTH_LONG).show();
+            if (horseSeekBars[i].getProgress() >= 100) {
+                winningHorse = i + 1;
+                break;
             }
+        }
+
+        if (winningHorse != -1) {
+            String message = "🏆 Ngựa " + winningHorse + " đã chiến thắng!";
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+            boolean isWinner = false;
+            for (int i = 0; i < horseCheckBoxes.length; i++) {
+                if (horseCheckBoxes[i].isChecked() && (i + 1) == winningHorse) {
+                    String betText = horseBetEditTexts[i].getText().toString();
+                    int betAmount = Integer.parseInt(betText);
+                    balance += betAmount * 2;
+                    isWinner = true;
+                }
+            }
+
+            if (isWinner) {
+                Toast.makeText(this, "🎉 Bạn đã đặt cược đúng! Tiền thưởng đã được cộng vào tài khoản.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "😢 Bạn đã thua cược. Thử lại nhé!", Toast.LENGTH_LONG).show();
+            }
+
+            updateBalance();
         }
     }
 
     private void resetRace() {
-        // Reset tất cả các trạng thái về ban đầu
         for (SeekBar seekBar : horseSeekBars) {
             seekBar.setProgress(0);
         }

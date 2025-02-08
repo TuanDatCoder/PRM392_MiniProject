@@ -84,13 +84,15 @@
 
                 <SeekBar
                     android:id="@+id/horse1SeekBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="145dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:thumb="@drawable/horse1"
+                    />
             </LinearLayout>
 
             <!-- Ngựa 2 -->
@@ -129,7 +131,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:thumb="@drawable/horse2"/>
 
             </LinearLayout>
             <!-- Ngựa 3 -->
@@ -168,7 +171,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:thumb="@drawable/horse3"/>
 
             </LinearLayout>
             <!-- Ngựa 4 -->
@@ -207,7 +211,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:thumb="@drawable/horse4"/>
 
             </LinearLayout>
             <!-- Ngựa 2 -->
@@ -246,7 +251,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:thumb="@drawable/horse5"/>
 
             </LinearLayout>
         </LinearLayout>
