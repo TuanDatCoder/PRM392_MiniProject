@@ -15,7 +15,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Sign In Form"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -46,11 +46,12 @@
 
     <TextView
         android:id="@+id/tvNoAccountYet"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Not Account Yet ? Create one"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textAlignment="center"/>
 
     <LinearLayout
         android:id="@+id/textOr"
