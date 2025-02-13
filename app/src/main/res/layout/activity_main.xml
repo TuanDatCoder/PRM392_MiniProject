@@ -36,6 +36,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"/>
 
+    <Button
+        android:id="@+id/selectHorseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎯 Chọn Ngựa"
+        android:textSize="18sp"
+        android:backgroundTint="#FFC107"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/balanceTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <!-- CardView chứa danh sách ngựa -->
     <androidx.cardview.widget.CardView
         android:layout_width="382dp"
@@ -49,11 +63,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/balanceTextView">
 
+        <ImageView
+            android:layout_width="397dp"
+            android:layout_height="427dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/back_ground_racing" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="295dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginTop="40dp">
 
             <!-- Ngựa 1 -->
             <LinearLayout
@@ -62,37 +83,17 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/horse1BetEditText"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background"
-                    android:gravity="center"
-                    android:hint="Nhập tiền"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/horse1CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Ngựa 1"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/horse1SeekBar"
-                    android:layout_width="145dp"
+                    android:layout_width="199dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
                     android:progress="0"
-                    android:thumb="@drawable/horse1"
-                    />
+                    android:thumb="@drawable/horse1" />
             </LinearLayout>
 
             <!-- Ngựa 2 -->
@@ -103,36 +104,17 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/horse2BetEditText"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background"
-                    android:gravity="center"
-                    android:hint="Nhập tiền"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/horse2CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Ngựa 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/horse2SeekBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
                     android:progress="0"
-                    android:thumb="@drawable/horse2"/>
+                    android:thumb="@drawable/horse2" />
 
             </LinearLayout>
             <!-- Ngựa 3 -->
@@ -143,36 +125,17 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/horse3BetEditText"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background"
-                    android:gravity="center"
-                    android:hint="Nhập tiền"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/horse3CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Ngựa 3"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/horse3SeekBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
                     android:progress="0"
-                    android:thumb="@drawable/horse3"/>
+                    android:thumb="@drawable/horse3" />
 
             </LinearLayout>
             <!-- Ngựa 4 -->
@@ -183,76 +146,17 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/horse4BetEditText"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background"
-                    android:gravity="center"
-                    android:hint="Nhập tiền"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/horse4CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Ngựa 4"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/horse4SeekBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
                     android:max="100"
                     android:progress="0"
-                    android:thumb="@drawable/horse4"/>
-
-            </LinearLayout>
-            <!-- Ngựa 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/horse5BetEditText"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:drawable/editbox_background"
-                    android:gravity="center"
-                    android:hint="Nhập tiền"
-                    android:inputType="number"
-                    android:padding="8dp"
-                    android:textSize="16sp" />
-
-                <CheckBox
-                    android:id="@+id/horse5CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Ngựa 5"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <SeekBar
-                    android:id="@+id/horse5SeekBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
-                    android:max="100"
-                    android:progress="0"
-                    android:thumb="@drawable/horse5"/>
+                    android:thumb="@drawable/horse4" />
 
             </LinearLayout>
         </LinearLayout>
