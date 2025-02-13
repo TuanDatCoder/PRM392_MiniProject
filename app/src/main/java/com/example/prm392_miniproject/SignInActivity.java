@@ -36,7 +36,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         //Register event
         tvNoAccountYet.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
-
     }
 
     private boolean checkInput() {
