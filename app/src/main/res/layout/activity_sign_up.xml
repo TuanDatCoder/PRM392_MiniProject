@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:hint="Username"
+        android:minHeight="48dp"
         android:textColor="@color/white"
         android:textColorHint="#AAA" />
 
@@ -38,6 +39,7 @@
         android:layout_marginBottom="8dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         android:textColor="@color/white"
         android:textColorHint="#aaa" />
 
@@ -48,6 +50,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:hint="Username"
+        android:minHeight="48dp"
         android:textColor="@color/white"
         android:textColorHint="#aaa" />
 
