@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chọn ngựa đặt cược"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Ngựa 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/horse1"
+            android:contentDescription="Ngựa 1"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/horse1BetEditText"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="center"
+            android:hint="Nhập tiền"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/horse1CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Ngựa 1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Ngựa 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/horse2"
+            android:contentDescription="Ngựa 2"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/horse2BetEditText"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="center"
+            android:hint="Nhập tiền"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/horse2CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Ngựa 2"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Ngựa 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/horse3"
+            android:contentDescription="Ngựa 3"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/horse3BetEditText"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="center"
+            android:hint="Nhập tiền"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/horse3CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Ngựa 3"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Ngựa 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/horse4"
+            android:contentDescription="Ngựa 4"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/horse4BetEditText"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="center"
+            android:hint="Nhập tiền"
+            android:inputType="number"
+            android:padding="8dp"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/horse4CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Ngựa 4"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Xác nhận" />
+
+</LinearLayout>
