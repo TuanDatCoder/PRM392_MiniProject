@@ -1,4 +1,4 @@
-package com.example.prm392_miniproject;
+package com.example.prm392_miniproject.utilities;
 
 import android.content.Context;
 import android.media.AudioAttributes;

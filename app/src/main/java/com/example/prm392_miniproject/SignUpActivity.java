@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+import com.example.prm392_miniproject.models.Account;
+import com.example.prm392_miniproject.utilities.AccountManager;
+
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     //View
     private EditText etUsername;
@@ -27,10 +30,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         //Reference from layout
-        etUsername =(EditText) findViewById(R.id.etUsername);
-        etPassword = (EditText)  findViewById(R.id.etPassword);
-        etConfirmPassword = (EditText)  findViewById(R.id.etConfirmPassword);
-        tvAlreadyAccount = (TextView)  findViewById(R.id.tvAlreadyAccount);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
+        tvAlreadyAccount = (TextView) findViewById(R.id.tvAlreadyAccount);
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
         //Register event
@@ -39,16 +42,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
     }
-    private boolean checkInput(){
-        if(etUsername.getText().toString().isEmpty()){
+
+    private boolean checkInput() {
+        if (etUsername.getText().toString().isEmpty()) {
             etUsername.setError(REQUIRE);
             return false;
         }
-        if(etPassword.getText().toString().isEmpty()){
+        if (etPassword.getText().toString().isEmpty()) {
             etPassword.setError(REQUIRE);
             return false;
         }
-        if(etConfirmPassword.getText().toString().isEmpty()){
+        if (etConfirmPassword.getText().toString().isEmpty()) {
             etPassword.setError(REQUIRE);
             return false;
         }
@@ -62,14 +66,25 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return true;
 
     }
-    private void signUp(){
+
+    private void signUp() {
         //Invalid
-        if(!checkInput()){
+        if (!checkInput()) {
             return;
         }
+        AccountManager accountManager = new AccountManager(this);
+        Account newAccount = new Account(etUsername.getText().toString(), etUsername.getText().toString(), etPassword.getText().toString());
+        boolean registrationSuccess = accountManager.register(newAccount);
 
+        if (registrationSuccess) {
+            Toast.makeText(this, "Đăng kí thành công, đăng nhập để tiếp tục", Toast.LENGTH_SHORT).show();
+            signInForm();
+        } else {
+            Toast.makeText(this, "Đăng kí thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
     }
-    private void signInForm(){
+
+    private void signInForm() {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
         finish();

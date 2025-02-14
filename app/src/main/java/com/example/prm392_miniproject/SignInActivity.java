@@ -3,12 +3,16 @@ package com.example.prm392_miniproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.prm392_miniproject.utilities.AccountManager;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -54,14 +58,21 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void signIn() {
+        AccountManager accountManager = new AccountManager(this);
         //Invalid
         if (!checkInput()) {
             return;
         }
-        //start MainActivity
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        boolean loginSuccess = accountManager.login(etUsername.getText().toString(),
+                etPassword.getText().toString());
+
+        if (loginSuccess) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Đăng nhập thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void signUpForm() {
