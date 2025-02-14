@@ -79,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startRace() {
+        // Kiểm tra nếu chưa đặt cược
+        int totalBet = Arrays.stream(betAmounts).sum();
+        if (totalBet == 0) {
+            Toast.makeText(this, "Vui lòng đặt cược trước khi bắt đầu cuộc đua!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Dừng bất kỳ cuộc đua nào đang chạy trước đó
         handler.removeCallbacks(this::moveSeekBars);
 
@@ -91,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         // Bắt đầu cuộc đua sau 1 giây
         handler.postDelayed(this::moveSeekBars, 300);
     }
+
 
     private void determineWinner(int winningHorse) {
         Toast.makeText(this, "Ngựa " + (winningHorse + 1) + " thắng cuộc!", Toast.LENGTH_LONG).show();
