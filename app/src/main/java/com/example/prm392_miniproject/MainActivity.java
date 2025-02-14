@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int balance = 1000;
     private Random random = new Random();
     private Handler handler = new Handler();
+    SoundManager soundManager = new SoundManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
         startButton.setOnClickListener(v -> startRace());
         resetButton.setOnClickListener(v -> resetRace());
+        soundManager.loadSound("start", R.raw.start);
+        soundManager.loadSound("epic_background", R.raw.epic_background);
+        soundManager.loadSound("cheer", R.raw.cheer);
+        soundManager.loadSound("losing", R.raw.losing);
+        soundManager.loadSound("winning", R.raw.winning);
+        soundManager.loadSound("horse_galloping", R.raw.horse_galloping);
     }
 
     private void updateBalance() {
@@ -70,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     private void startRace() {
         boolean validBet = false;
         int totalBet = 0;
-
         for (int i = 0; i < horseCheckBoxes.length; i++) {
             if (horseCheckBoxes[i].isChecked()) {
                 String betText = horseBetEditTexts[i].getText().toString();
@@ -97,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
         balance -= totalBet;
         updateBalance();
-
+        soundManager.playSound("start");
+        soundManager.playSound("horse_galloping");
         for (SeekBar seekBar : horseSeekBars) {
             seekBar.setProgress(0);
         }
@@ -121,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         if (!raceFinished) {
             handler.postDelayed(this::moveSeekBars, 100);
         } else {
+            soundManager.stopAllSounds();
             checkRaceResult();
         }
     }
@@ -150,8 +158,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (isWinner) {
+                soundManager.playSound("winning");
+                soundManager.playSound("cheer");
                 Toast.makeText(this, "🎉 Bạn đã đặt cược đúng! Tiền thưởng đã được cộng vào tài khoản.", Toast.LENGTH_LONG).show();
             } else {
+                soundManager.playSound("losing");
                 Toast.makeText(this, "😢 Bạn đã thua cược. Thử lại nhé!", Toast.LENGTH_LONG).show();
             }
 
@@ -172,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             checkBox.setChecked(false);
         }
 
-        balance = 1000;
+//        balance = 1000;
         updateBalance();
     }
 }
