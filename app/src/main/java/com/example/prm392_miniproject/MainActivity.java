@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText[] horseBetEditTexts;
     private CheckBox[] horseCheckBoxes;
     private SeekBar[] horseSeekBars;
-    private Button startButton, resetButton, selectHoose;
+    private Button startButton, resetButton, selectHoose, btnAddMoney;
     private int balance = 1000;
     private Random random = new Random();
 
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         selectHoose = findViewById(R.id.selectHorseButton);
         startButton = findViewById(R.id.startButton);
         resetButton = findViewById(R.id.resetButton);
+        btnAddMoney = findViewById(R.id.addMoneyButton);
 
         horseBetEditTexts = new EditText[]{
                 findViewById(R.id.horse1BetEditText),
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         updateBalance();
         selectHoose.setOnClickListener(v -> showChooseHorseDialog());
+        btnAddMoney.setOnClickListener(v -> showAddMoneyDialog());
         startButton.setOnClickListener(v -> startRace());
         resetButton.setOnClickListener(v -> resetRace());
     }
@@ -110,6 +112,40 @@ public class MainActivity extends AppCompatActivity {
         updateBalance();
     }
 
+    private void showAddMoneyDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_money);
+
+        EditText etAddMoney = dialog.findViewById(R.id.etAddMoney);
+        Button btnConfirmAddMoney = dialog.findViewById(R.id.btnConfirmAddMoney);
+
+        btnConfirmAddMoney.setOnClickListener(v -> {
+            String moneyStr = etAddMoney.getText().toString();
+            if (moneyStr.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập số tiền", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                int amountToAdd = Integer.parseInt(moneyStr);
+                if (amountToAdd <= 0) {
+                    Toast.makeText(this, "Số tiền phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Cập nhật số dư
+                balance += amountToAdd;
+                updateBalance();
+
+                Toast.makeText(this, "Nạp tiền thành công! Số dư mới: " + balance + " VND", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Số tiền không hợp lệ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
 
     private void showChooseHorseDialog() {
         Dialog dialog = new Dialog(this);
@@ -223,6 +259,9 @@ public class MainActivity extends AppCompatActivity {
                     isWinner = true;
                 }
             }
+
+            balance += totalWinAmount;
+            updateBalance(); // Cập nhật UI hiển thị số dư mới
 
             if (isWinner) {
                 balance += totalWinAmount;
