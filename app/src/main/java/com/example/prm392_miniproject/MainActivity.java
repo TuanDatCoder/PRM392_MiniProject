@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Handler handler = new Handler();
-    SoundManager soundManager = new SoundManager(this);
+    private SoundManager soundManager = new SoundManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
         for (SeekBar seekBar : horseSeekBars) {
             seekBar.setProgress(0);
         }
-
+        soundManager.playSound("start");
+        soundManager.playSound("horse_galloping");
         // Bắt đầu cuộc đua sau 1 giây
-        handler.postDelayed(this::moveSeekBars, 1000);
+        handler.postDelayed(this::moveSeekBars, 300);
     }
 
     private void determineWinner(int winningHorse) {
@@ -256,11 +257,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (isWinner) {
+            soundManager.playSound("cheer");
+            soundManager.playSound("winning");
             resultText.append("\n🎉 Bạn thắng cược: " + totalWinAmount + " VND!");
         } else {
+            soundManager.playSound("losing");
             resultText.append("\n😢 Bạn đã thua cược. Thử lại nhé!");
         }
-
         resultTextView.setText(resultText.toString());
         balanceTextView.setText("💰 Số dư hiện tại: " + balance + " VND");
 
